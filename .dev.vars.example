@@ -1,0 +1,17 @@
+# Copy this file to `.dev.vars` and fill in real keys. `.dev.vars` is gitignored.
+# These are read by the Cloudflare Worker (see worker/environment.ts).
+
+# Speech-to-text for the captured-area recording (Mistral Voxtral).
+# Required for the "Agent draw" demo. https://console.mistral.ai/
+MISTRAL_API_KEY=
+
+# Default model provider for the agent. The default model is an OpenRouter-hosted
+# Gemini model (see shared/models.ts), so this is required out of the box.
+# https://openrouter.ai/keys
+OPENROUTER_API_KEY=
+
+# Optional: only needed if you switch the agent to a native (non-OpenRouter)
+# provider in the model picker.
+ANTHROPIC_API_KEY=
+GOOGLE_API_KEY=
+OPENAI_API_KEY=

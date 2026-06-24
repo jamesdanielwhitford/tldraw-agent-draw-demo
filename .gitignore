@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+.yarn/
+
+# Build output
+dist/
+.vite/
+.tsbuild/
+*.tsbuildinfo
+
+# Secrets (Cloudflare Worker local vars)
+.dev.vars
+*.dev.vars
+.env
+
+# Cloudflare wrangler local state
+.wrangler/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
