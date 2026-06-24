@@ -115,8 +115,10 @@ etc.) rather than committing `.dev.vars`.
 **tldraw license for production.** The tldraw SDK is free in development but requires a license key
 for any public deployment (see Credits and license below). Get one from
 [tldraw.dev/pricing](https://tldraw.dev/pricing), a free 100-day trial, a free hobby license (shows
-a "made with tldraw" watermark), or a commercial license, and pass it to the `Tldraw` component via
-the `licenseKey` prop in `client/App.tsx`.
+a "made with tldraw" watermark), or a commercial license. The app reads it from
+`VITE_TLDRAW_LICENSE_KEY` (see `.env.example`) and passes it to the `Tldraw` component's
+`licenseKey` prop in `client/App.tsx`. The key is inlined into the client bundle at build time
+(expected for tldraw keys), so keep it in the gitignored `.env`, not in source.
 
 ## Credits and license
 
