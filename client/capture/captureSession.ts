@@ -2,6 +2,7 @@ import { atom, BoxModel } from 'tldraw'
 import { AreaRecorder } from '../speech/AreaRecorder'
 import { transcribe } from '../speech/transcribe'
 import { requestDrawInArea } from './requestDrawInArea'
+import { reportPossibleQuotaError } from '../ui/quotaError'
 import type { TldrawAgent } from '../agent/TldrawAgent'
 
 export type CaptureStatus = 'recording' | 'queued' | 'transcribing' | 'drawing' | 'error'
@@ -159,6 +160,7 @@ async function processQueue(): Promise<void> {
 				text = await transcribe(blob)
 			} catch (err) {
 				console.error('[capture] transcription failed:', err)
+				reportPossibleQuotaError(err, 'Mistral')
 				patchSession(id, { status: 'error', error: err instanceof Error ? err.message : String(err) })
 				continue
 			}
@@ -169,10 +171,12 @@ async function processQueue(): Promise<void> {
 			console.log(`[capture] transcript for ${id}: "${text}"`)
 
 			patchSession(id, { status: 'drawing' })
+			let drawnShapes = 0
 			try {
-				await requestDrawInArea(agentRef, text, session.bounds)
+				drawnShapes = await requestDrawInArea(agentRef, text, session.bounds)
 			} catch (err) {
 				console.error('[capture] agent request failed:', err)
+				reportPossibleQuotaError(err, 'OpenRouter')
 				patchSession(id, { status: 'error', error: err instanceof Error ? err.message : String(err) })
 				continue
 			}
