@@ -7,8 +7,7 @@ This is built on [tldraw](https://tldraw.dev)'s official
 [**Agent starter kit**](https://github.com/tldraw/agent-template) (MIT licensed), extended with a
 speech-driven "capture a region and describe it" workflow.
 
-![Agent draw demo](docs/demo.gif)
-<!-- Replace docs/demo.gif with a real screen recording before publishing. -->
+[![Agent Draw demo](https://img.youtube.com/vi/livloOnVpC8/maxresdefault.jpg)](https://youtu.be/livloOnVpC8)
 
 ## What it does
 
